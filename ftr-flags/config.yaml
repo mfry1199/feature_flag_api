@@ -1,0 +1,22 @@
+feature-flags:
+  centerline-artifacts:
+    enabled: true
+    context:
+      environments:
+        prod:
+          rollout: 0
+        dev:
+          rollout: 100
+        staging:
+          rollout: 100
+
+  search-v5:
+    enabled: true
+    context:
+      environments:
+        prod:
+          rollout: 0
+        dev:
+          rollout: 100
+        staging:
+          rollout: 100
