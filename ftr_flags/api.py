@@ -1,4 +1,4 @@
-from manager import FeatureFlagManager
+from ftr_flags.manager import FeatureFlagManager
 from fastapi import FastAPI
 
 
