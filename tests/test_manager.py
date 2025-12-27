@@ -3,16 +3,16 @@ from ftr_flags.manager import FeatureFlagManager
 def test_feature_flag_manager(tmp_path):
     yaml_content = """
         feature-flags:
-        centerline-artifacts:
-            enabled: true
-            context:
-            environments:
-                prod:
-                rollout: 0
-                dev:
-                rollout: 100
-                staging:
-                rollout: 100
+            centerline-artifacts:
+                enabled: true
+                context:
+                    environments:
+                        prod:
+                            rollout: 0
+                        dev:
+                            rollout: 100
+                        staging:
+                            rollout: 100
         """
     
     yaml_file = tmp_path / "flag.yaml"
