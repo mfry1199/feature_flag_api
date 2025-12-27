@@ -2,7 +2,7 @@ from manager import FeatureFlagManager
 from api import create_app
 
 
-ftr_mgr = FeatureFlagManager(ftr_cfg_path='config.yaml')
+ftr_mgr = FeatureFlagManager(ftr_cfg_path='ftr-flags/config.yaml')
 app = create_app(ftr_mgr)
 
 

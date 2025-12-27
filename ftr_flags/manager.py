@@ -1,5 +1,5 @@
 import yaml
-from core import FeatureFlag
+from ftr_flags.core import FeatureFlag
 
 
 class MissingConfigError(Exception):
@@ -21,9 +21,9 @@ class FeatureFlagManager:
     def __init__(self, ftr_cfg_path: str):
         self.ftr_flags = self.load(ftr_cfg_path)
 
-    def load(self, ftr_cfg_path) -> dict[str, FeatureFlag]:
-        with open(self, ftr_cfg_path):
-            ftr_cfg = yaml.safe_load(ftr_cfg_path)
+    def load(self, ftr_cfg_path: str) -> dict[str, FeatureFlag]:
+        with open(ftr_cfg_path, 'r') as f:
+            ftr_cfg = yaml.safe_load(f)
 
         ftr_flag_cfg = ftr_cfg.get('feature-flags', None)
         
@@ -38,7 +38,6 @@ class FeatureFlagManager:
 
     def eval_ftr_flag(self, request: dict) -> dict:
         ftr_name = request.get("feature", None)
-        context = request.get("context", None)
 
         if not ftr_name:
             raise MissingFeatureName("The request did not succeed due to no feature name provided.")
@@ -48,5 +47,8 @@ class FeatureFlagManager:
         if not ftr:
             raise FeatureNotFound(f"A feature with the name {ftr_name} has not been configured.")
         
-        ftr_decision = ftr.decision(context)
-        return ftr_decision
+        ftr_decision, ftr_cxt = ftr.decision()
+
+        return {"feature_name": ftr_name,
+                "flag": ftr_decision,
+                "context": ftr_cxt}

@@ -1,8 +1,8 @@
-from manager import FeatureManager
+from manager import FeatureFlagManager
 from fastapi import FastAPI
 
 
-def create_app(ftr_mgr: FeatureManager) -> FastAPI:
+def create_app(ftr_mgr: FeatureFlagManager) -> FastAPI:
 
     app = FastAPI()
 
