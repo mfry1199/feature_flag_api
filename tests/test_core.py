@@ -1,8 +1,9 @@
-from ftr_flags.core import FeatureFlag
+import pytest
 import yaml
+from ftr_flags.core import FeatureFlag
 
 
-
+@pytest.mark.unit
 def test_ftrflag():
     config_yaml = """
         enabled: true

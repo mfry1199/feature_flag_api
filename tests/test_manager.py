@@ -1,5 +1,7 @@
+import pytest
 from ftr_flags.manager import FeatureFlagManager
 
+@pytest.mark.unit
 def test_feature_flag_manager(tmp_path):
     yaml_content = """
         feature-flags:
